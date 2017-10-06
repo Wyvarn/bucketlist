@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, permissions
 from .serializers import BucketListSerializer
 from .models import BucketList
+from .permissions import IsOwner
 
 
 class CreateView(generics.ListCreateAPIView):
@@ -11,16 +12,19 @@ class CreateView(generics.ListCreateAPIView):
     """
     queryset = BucketList.objects.all()
     serializer_class = BucketListSerializer
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
 
     def perform_create(self, serializer):
         """
         Save the post data when create a new bucket list item
         :param serializer serializer to map model object to JSON
         """
-        serializer.save()
+        serializer.save(owner=self.request.user)
 
 
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
     """Handles the GET, PUT, DELETE methods"""
     queryset = BucketList.objects.all()
     serializer_class = BucketListSerializer
+    permission_classes = permissions.IsAuthenticated, IsOwner
+

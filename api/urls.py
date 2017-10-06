@@ -8,6 +8,7 @@ from .views import CreateView, DetailsView
 
 
 urlpatterns = {
+    url("^auth/", include("rest_framework.urls", namespace="rest_framework")),
     url("^bucketlists/$", CreateView.as_view(), name="create"),
     url("^bucketlists/(?P<pk>[0-9]+)/$", DetailsView.as_view(), name="details")
 }
