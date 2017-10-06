@@ -18,3 +18,9 @@ class CreateView(generics.ListCreateAPIView):
         :param serializer serializer to map model object to JSON
         """
         serializer.save()
+
+
+class DetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """Handles the GET, PUT, DELETE methods"""
+    queryset = BucketList.objects.all()
+    serializer_class = BucketListSerializer
