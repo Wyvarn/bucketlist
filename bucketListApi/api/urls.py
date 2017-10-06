@@ -9,7 +9,7 @@ from .views import CreateView, DetailsView
 
 urlpatterns = {
     url("^bucketlists/$", CreateView.as_view(), name="create"),
-    url("^bucketlists/(?P<pk>[0-9]+)/$)", DetailsView.as_view(), name="details")
+    url("^bucketlists/(?P<pk>[0-9]+)/$", DetailsView.as_view(), name="details")
 }
 
 urlpatterns = format_suffix_patterns(urlpatterns)
