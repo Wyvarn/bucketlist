@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+
+if os.path.exists(".env"):
+    print("Importing environment variables...")
+    env_file = open(".env")
+    for line in env_file:
+        var = line.strip().split("=")
+        if len(var) == 2:
+            os.environ[var[0]] = var[1]
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g9qmg%nqw(n51@d7f60vetn&r)yrg5&g!22x#56qmr*s(ztcf4'
+SECRET_KEY = os.environ.get("SECRET_KEY", "BUCKET_LIST_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "rest_framework",
+    "api"
 ]
 
 MIDDLEWARE = [
