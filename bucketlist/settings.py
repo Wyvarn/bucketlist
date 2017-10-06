@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'bucketListApi.urls'
+ROOT_URLCONF = 'bucketlist.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bucketListApi.wsgi.application'
+WSGI_APPLICATION = 'bucketlist.wsgi.application'
 
 
 # Database
